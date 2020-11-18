@@ -6,9 +6,9 @@ from keras.models import load_model
 
 from requirements import *
 
-facenet_model = 'model/facenet_keras.h5'
-students_dir = 'db/students'
-encodings_path = 'data/encodings/encodings.pkl'
+facenet_model = '../model/facenet_keras.h5'
+students_dir = '../db/students'
+encodings_path = '../data/encodings/encodings.pkl'
 required_size = (160,160)
 
 face_detector = mtcnn.MTCNN()
