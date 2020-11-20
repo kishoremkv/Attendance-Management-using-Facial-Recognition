@@ -37,7 +37,7 @@ def draw_faces(filename,result_list):
 
 
 
-filename = 'test2.jpg'
+filename = '../images/test2.jpg'
 # load image from file
 pixels = pyplot.imread(filename)
 print(pixels.shape)

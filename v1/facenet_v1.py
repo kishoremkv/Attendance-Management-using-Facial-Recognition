@@ -3,7 +3,7 @@ import numpy as np
 from keras.models import load_model
 import cv2
 from scipy.spatial.distance import cosine
-model = load_model('model/facenet_keras.h5')
+model = load_model('../model/facenet_keras.h5')
 # print(model.inputs)
 # print(model.outputs)
 
@@ -16,12 +16,12 @@ def is_match(known_embedding, candidate_embedding, thresh=0.5):
 
 
 embedder = FaceNet()
-image = cv2.imread('images/test2.jpg')
+image = cv2.imread('../images/test2.jpg')
 # x = embedder.extract('images/test2.jpg',0.95)#for detecting the faces and getting the embeddings as a dictionary
 embeddings= embedder.embeddings([image])# for getting embeddings of particular image
 print(len(embeddings[0]))
 
-filenames = ['images/photo1.jpg','images/photo2.jpg','images/photo3.jpg','images/test1.jpg']
+filenames = ['../images/photo1.jpg','../images/photo2.jpg','../images/photo3.jpg','../images/test1.jpg']
 images = list()
 for file in filenames:
     image = cv2.imread(file)
