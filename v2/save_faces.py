@@ -13,9 +13,10 @@ def extract_face(filename, required_size=(160,160)):
     image = Image.open(filename)
     image = image.convert('RGB')
     pixels = asarray(image)
-    detector = MTCNN()
+    detector = MTCNN() 
     results = detector.detect_faces(pixels)
-    x1,y1,w,h = results[0]['box']
+    res = max(results, key = lambda b: b['box'][2]*b['box'][3])
+    x1,y1,w,h = res['box']
     x1,y1 = abs(x1), abs(y1)
     x2,y2 = x1+w, y1+h
     face = pixels[y1:y2,x1:x2]

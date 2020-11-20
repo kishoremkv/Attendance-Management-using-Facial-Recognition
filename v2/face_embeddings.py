@@ -4,7 +4,7 @@ from numpy import expand_dims
 from numpy import asarray
 from numpy import savez_compressed
 from keras.models import  load_model
-
+ 
 def get_embedding(model,face_pixels):
     face_pixels = face_pixels.astype('float32')
     mean,std = face_pixels.mean(),face_pixels.std()

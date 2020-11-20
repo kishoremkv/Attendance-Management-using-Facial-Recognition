@@ -1,4 +1,4 @@
-#saves the model in pkl file
+#saves the final model in pkl file
 from numpy import savez_compressed,load
 from sklearn.preprocessing import Normalizer
 from sklearn.preprocessing import LabelEncoder
@@ -17,6 +17,7 @@ testX = in_encoder.transform(testX)
 
 out_encoder = LabelEncoder()
 out_encoder.fit(trainy)
+save_pickle('../model/label_encoder.pkl',out_encoder)
 trainy = out_encoder.transform(trainy)
 testy = out_encoder.transform(testy)
 
