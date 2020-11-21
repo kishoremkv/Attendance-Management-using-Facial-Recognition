@@ -66,6 +66,8 @@ class StudentAttendanceTable(models.Model):
     subject4 = models.OneToOneField(SubjectAttendanceTable, on_delete=models.CASCADE, related_name = "subject4")
     subject5 = models.OneToOneField(SubjectAttendanceTable, on_delete=models.CASCADE, related_name = "subject5")
     subject6 = models.OneToOneField(SubjectAttendanceTable, on_delete=models.CASCADE, related_name = "subject6")
+    subject7 = models.OneToOneField(SubjectAttendanceTable, on_delete=models.CASCADE, related_name = "subject7")
+
 
 # every student has a class (many to one)
 # every student has roll_no, name, section and attendance
@@ -74,7 +76,13 @@ class Student(models.Model):
     roll_no = models.CharField(max_length = 10, default = "")
     name = models.CharField(max_length = 32, default = "")
     section = models.ForeignKey(Class, on_delete=models.CASCADE)
-    attendance = models.OneToOneField(StudentAttendanceTable, on_delete=models.CASCADE)
+    # attendance = models.OneToOneField(StudentAttendanceTable, on_delete=models.CASCADE)
     
     def __unicode__(self):
         return self.roll_no
+
+
+class Attendance(models.Model):
+    roll_no = models.CharField(max_length = 10, default = "")
+    # we will get name, class and section from the rollno
+    status = models.CharField(max_length = 10, default = "Absent") 
