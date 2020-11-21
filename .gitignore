@@ -129,6 +129,12 @@ dmypy.json
 .pyre/
 
 
+
 # custom ignore
-migrations
-# .*sqlite3
+mysite/attendance/migrations
+mysite/attendance/model/sample_data.npz
+mysite/attendance/model/sample_data_face_embeddings.npz
+mysite/attendance/model/svm_model.pkl
+mysite/attendance/model/label_encoder.pkl
+mysite/attendance/images/train
+mysite/attendance/images/val
