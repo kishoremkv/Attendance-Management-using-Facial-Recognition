@@ -10,6 +10,12 @@ from .main.face_classification import *
 
 def index(request):
     students_info = Student.objects.all()
+
+    if request.method == "POST":
+        files = request.FILES.getlist("files")
+        print("hello", files)
+        for file in files:
+            print(file)
     return render(request, 'attendance/index.html', { 'students_info' : students_info })
 
 def train_model(request):

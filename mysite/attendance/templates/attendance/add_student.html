@@ -28,7 +28,6 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
 
   </head>
   <body>
@@ -48,10 +47,26 @@
     <div class="row">
       <div class="col-md-6">
         <h2>Registration</h2>
-        <p>Our model is running as a background process.</p>
-        <p>If you want to register your name as a student then please click here.</p>
-        <p><a class="btn btn-primary btn-lg" href="{% url 'attendance:train' %}" role="button">Register &raquo;</a></p>
-  
+         <form method = "post" action = "/attendance/" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" class="form-control" id="" placeholder="Enter Name">
+          </div>
+          <div class="form-group">
+            <label for="">Roll Number</label>
+            <input type="text" class="form-control" id="" placeholder="Enter Roll Number">
+          </div>
+          <div class="form-group">
+            <label for="">Section</label>
+            <input type="text" class="form-control" id="" placeholder="Enter Roll Number">
+          </div>
+          <div class="form-group">
+            <label>Please provide 20 images of yours</label>
+            <input type="file" name = "files" class="form-control-file" id="exampleFormControlFile1" multiple>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
       </div>
       
     </div>
@@ -66,5 +81,4 @@
   <p>&copy; M K V Kishore</p>
 </footer>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script></body>
 </html> 

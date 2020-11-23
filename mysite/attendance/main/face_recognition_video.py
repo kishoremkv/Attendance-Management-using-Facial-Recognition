@@ -4,6 +4,7 @@ from mtcnn import MTCNN
 from datetime import datetime
 import numpy as np
 import cv2
+from attendance.models import *
 
 
 def get_embedding(facenet_model,face_pixels):
@@ -13,6 +14,32 @@ def get_embedding(facenet_model,face_pixels):
     samples = np.expand_dims(face_pixels, axis=0)
     yhat = facenet_model.predict(samples)
     return yhat[0]
+
+def save_db(detected_person, time, section = 1):
+    period = ""
+    if time.hour == "9":
+        period = "period1"
+    elif time.hour == "10":
+        period = "period2"
+    elif time.hour == "11":
+        period = "period3"
+    elif time.hour == "12":
+        period = "period4"
+    elif time.hour == "13":
+        pass
+    elif time.hour == "14":
+        period = "period5"
+    elif time.hour == "15":
+        period = "period6"
+    else:#need to fix this later
+        period = "period7"
+    try:
+        already_posted = Attendance.objects.get(roll_no = detected_person, period = period)
+    except Attendance.DoesNotExist:
+        post_attendance = Attendance(roll_no = detected_person, section = section, period = period, status = "Present")
+        post_attendance.save()
+   
+        
 
 def recognize(img, facenet_model, svm_model, detector, labels, confidence = 0.99, required_size=(160,160)):
     img_rgb = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
@@ -42,8 +69,11 @@ def recognize(img, facenet_model, svm_model, detector, labels, confidence = 0.99
         else:
             cv2.rectangle(img, p1, p2, (0, 255, 0), 2)
             cv2.putText(img, detected_person, (p1[0], p1[1] - 5), cv2.FONT_HERSHEY_PLAIN, 1,(0, 200, 200), 3)
-            print(detected_person+" "+str(datetime.now()))
+            cur_time = datetime.now()
+            print(detected_person+" "+str(cur_time.hour)+":"+str(cur_time.minute)+":"+str(cur_time.second))
+            save_db(detected_person, cur_time)
     return img
+
 
 def face_recognition_video():
     face_detector = MTCNN()
@@ -51,8 +81,8 @@ def face_recognition_video():
     svm_model = load_pickle("attendance/model/svm_model.pkl")
     labels = load_pickle("attendance/model/label_encoder.pkl")
     vc = cv2.VideoCapture(0)
-
-    while vc.isOpened():
+    temp = True
+    while vc.isOpened() and temp==True :
         ret,frame = vc.read()
         if not ret:
             break
@@ -60,4 +90,4 @@ def face_recognition_video():
         cv2.imshow('camera',frame)
 
         if cv2.waitKey(1) & 0xFF==ord('q'):
-            break
+            temp = False

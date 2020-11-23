@@ -85,4 +85,9 @@ class Student(models.Model):
 class Attendance(models.Model):
     roll_no = models.CharField(max_length = 10, default = "")
     # we will get name, class and section from the rollno
-    status = models.CharField(max_length = 10, default = "Absent") 
+    section = models.CharField(max_length = 10, default = "")
+    period = models.CharField(max_length = 10, default = "")
+    status = models.CharField(max_length = 10, default = "Absent")
+
+    def __unicode__(self):
+        return self.roll_no + self.section + self.period 
