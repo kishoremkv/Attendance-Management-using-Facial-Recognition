@@ -87,6 +87,7 @@ class Attendance(models.Model):
     # we will get name, class and section from the rollno
     section = models.CharField(max_length = 10, default = "")
     period = models.CharField(max_length = 10, default = "")
+    date = models.CharField(max_length = 10, default = "")
     status = models.CharField(max_length = 10, default = "Absent")
 
     def __unicode__(self):

@@ -17,26 +17,31 @@ def get_embedding(facenet_model,face_pixels):
 
 def save_db(detected_person, time, section = 1):
     period = ""
-    if time.hour == "9":
+    if time.hour == 9:
         period = "period1"
-    elif time.hour == "10":
+    elif time.hour == 10:
         period = "period2"
-    elif time.hour == "11":
+    elif time.hour == 11:
         period = "period3"
-    elif time.hour == "12":
+    elif time.hour == 12:
         period = "period4"
-    elif time.hour == "13":
+    elif time.hour == 13:
         pass
-    elif time.hour == "14":
+    elif time.hour == 14:
         period = "period5"
-    elif time.hour == "15":
+    elif time.hour == 15:
         period = "period6"
     else:#need to fix this later
         period = "period7"
+    cur_date = str(time.day) + "/" + str(time.month) + "/" + str(time.year)
+    print(period, detected_person, cur_date)
+
     try:
-        already_posted = Attendance.objects.get(roll_no = detected_person, period = period)
+        already_posted = Attendance.objects.get(roll_no = detected_person, period = period, date = cur_date )
+        print(detected_person,": already added!")
     except Attendance.DoesNotExist:
-        post_attendance = Attendance(roll_no = detected_person, section = section, period = period, status = "Present")
+        print(detected_person,": added successfully!")
+        post_attendance = Attendance(roll_no = detected_person, section = section, period = period, date = cur_date, status = "Present")
         post_attendance.save()
    
         
