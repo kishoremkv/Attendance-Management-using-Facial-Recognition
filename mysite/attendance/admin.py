@@ -11,5 +11,6 @@ admin.site.register(SubjectAttendanceTable)
 admin.site.register(StudentAttendanceTable)
 admin.site.register(Student)
 admin.site.register(Attendance)
+admin.site.register(UploadFile)
 
 

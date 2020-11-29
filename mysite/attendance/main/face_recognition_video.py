@@ -26,7 +26,7 @@ def save_db(detected_person, time, section = 1):
     elif time.hour == 12:
         period = "period4"
     elif time.hour == 13:
-        pass
+        pass 
     elif time.hour == 14:
         period = "period5"
     elif time.hour == 15:
@@ -63,7 +63,7 @@ def recognize(img, facenet_model, svm_model, detector, labels, confidence = 0.99
         name = -1
         
         # print(type(trainX),trainX)
-        name = svm_model.predict(trainX)
+        name = svm_model.predict(trainX) 
         # print(type(name),name)
         # print(labels.inverse_transform(name))
         detected_person = labels.inverse_transform(name)[0]

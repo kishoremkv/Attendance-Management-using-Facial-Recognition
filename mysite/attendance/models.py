@@ -92,3 +92,6 @@ class Attendance(models.Model):
 
     def __unicode__(self):
         return self.roll_no + self.section + self.period 
+    
+class UploadFile(models.Model):
+    files = models.FileField(upload_to='myfiles/', blank=True, null=True)

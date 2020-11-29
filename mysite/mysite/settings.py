@@ -114,6 +114,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+import os
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # media directory in the root directory 
+MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
