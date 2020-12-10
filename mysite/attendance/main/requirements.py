@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import cv2
 from sklearn.preprocessing import Normalizer
 import pickle
+from attendance.models import *
 
 def normalize(img):
     mean, std = img.mean(),img.std()
@@ -37,6 +38,17 @@ def save_pickle(path,obj):
     with open(path,'wb') as f:
         pickle.dump(obj,f)
 
+def post_student_info(user):
+    print(user)
+    try:
+        cur_class = Class.objects.get(section = user['section'], branch = user['branch'])
+        print(user['naCme'])  
+        new_student = Student(roll_no = user.get('roll_no'), name = user.get('name'), section = cur_class)
+        new_student.save()
+        print("Added student info!"+" "+user['name'])
+    except Class.DoesNotExist:
+        return False
+    return True
 
 
 

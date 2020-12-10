@@ -34,14 +34,15 @@ def save_db(detected_person, time, section = 1):
     else:#need to fix this later
         period = "period7"
     cur_date = str(time.day) + "/" + str(time.month) + "/" + str(time.year)
-    print(period, detected_person, cur_date)
+    cur_time = str(time.hour)+":"+str(time.minute)+":"+str(time.second)
+    print(period, detected_person, cur_date, cur_time)
 
     try:
-        already_posted = Attendance.objects.get(roll_no = detected_person, period = period, date = cur_date )
+        already_posted = Attendance.objects.get(roll_no = detected_person, branch = "CSE",period = period, date = cur_date )
         print(detected_person,": already added!")
     except Attendance.DoesNotExist:
         print(detected_person,": added successfully!")
-        post_attendance = Attendance(roll_no = detected_person, section = section, period = period, date = cur_date, status = "Present")
+        post_attendance = Attendance(roll_no = detected_person, branch = "CSE", section = section, period = period, date = cur_date, time = cur_time, status = "Present")
         post_attendance.save()
    
         

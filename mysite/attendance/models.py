@@ -23,22 +23,22 @@ class Subject(models.Model):
 # each class on a particular day has 7 periods
 # each period has a subject and vice versa
 class DailyTimeTable(models.Model):
-    period1 = models.OneToOneField(Subject, on_delete=models.CASCADE, related_name = "period1")
-    period2 = models.OneToOneField(Subject, on_delete=models.CASCADE, related_name = "period2")
-    period3 = models.OneToOneField(Subject, on_delete=models.CASCADE, related_name = "period3")
-    period4 = models.OneToOneField(Subject, on_delete=models.CASCADE, related_name = "period4")
-    period5 = models.OneToOneField(Subject, on_delete=models.CASCADE, related_name = "period5")
-    period6 = models.OneToOneField(Subject, on_delete=models.CASCADE, related_name = "period6")
-    period7 = models.OneToOneField(Subject, on_delete=models.CASCADE, related_name = "period7")
+    period1 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name = "period1")
+    period2 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name = "period2")
+    period3 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name = "period3")
+    period4 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name = "period4")
+    period5 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name = "period5")
+    period6 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name = "period6")
+    period7 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name = "period7")
 
 # each class has a weekly time table
 # each day has a daily time table which is one to one
 class WeeklyTimeTable(models.Model):
-    tuesday = models.OneToOneField(DailyTimeTable,   on_delete=models.CASCADE, related_name = "tuesday")
-    wednesday = models.OneToOneField(DailyTimeTable, on_delete=models.CASCADE, related_name = "wednesday")
-    thursday = models.OneToOneField(DailyTimeTable,  on_delete=models.CASCADE, related_name = "thursday")
-    friday = models.OneToOneField(DailyTimeTable,    on_delete=models.CASCADE, related_name = "friday")
-    saturday = models.OneToOneField(DailyTimeTable,  on_delete=models.CASCADE, related_name = "saturday")
+    tuesday = models.ForeignKey(DailyTimeTable,   on_delete=models.CASCADE, related_name = "tuesday")
+    wednesday = models.ForeignKey(DailyTimeTable, on_delete=models.CASCADE, related_name = "wednesday")
+    thursday = models.ForeignKey(DailyTimeTable,  on_delete=models.CASCADE, related_name = "thursday")
+    friday = models.ForeignKey(DailyTimeTable,    on_delete=models.CASCADE, related_name = "friday")
+    saturday = models.ForeignKey(DailyTimeTable,  on_delete=models.CASCADE, related_name = "saturday")
 
 # there are many classes 
 # each class has branch, year, # of students and time table
@@ -48,7 +48,7 @@ class Class(models.Model):
     section = models.CharField(max_length = 2, default = "")
     year = models.IntegerField(default = 1)
     no_of_students = models.IntegerField(default = 60)
-    time_table = models.OneToOneField(WeeklyTimeTable, on_delete=models.CASCADE)
+    time_table = models.ForeignKey(WeeklyTimeTable, on_delete=models.CASCADE)
     def __unicode__(self):
         return self.branch+" "+self.year+self.section
 
@@ -85,9 +85,11 @@ class Student(models.Model):
 class Attendance(models.Model):
     roll_no = models.CharField(max_length = 10, default = "")
     # we will get name, class and section from the rollno
+    branch = models.CharField(max_length = 10, default = "")
     section = models.CharField(max_length = 10, default = "")
     period = models.CharField(max_length = 10, default = "")
     date = models.CharField(max_length = 10, default = "")
+    time = models.CharField(max_length = 10, default = "")
     status = models.CharField(max_length = 10, default = "Absent")
 
     def __unicode__(self):

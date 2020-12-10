@@ -1,0 +1,59 @@
+from rest_framework import status
+
+code = dict()
+
+code['200'] = status.HTTP_200_OK
+code['201'] = status.HTTP_201_CREATED
+code['202'] = status.HTTP_202_ACCEPTED
+code['204'] = status.HTTP_204_NO_CONTENT
+code['205'] = status.HTTP_205_RESET_CONTENT
+code['206'] = status.HTTP_206_PARTIAL_CONTENT
+code['207'] = status.HTTP_207_MULTI_STATUS
+code['208'] = status.HTTP_208_ALREADY_REPORTED
+code['226'] = status.HTTP_226_IM_USED
+
+
+code['400'] = status.HTTP_400_BAD_REQUEST
+code['401'] = status.HTTP_401_UNAUTHORIZED
+code['402'] = status.HTTP_402_PAYMENT_REQUIRED
+code['403'] = status.HTTP_403_FORBIDDEN
+code['404'] = status.HTTP_404_NOT_FOUND
+code['405'] = status.HTTP_405_METHOD_NOT_ALLOWED
+code['406'] = status.HTTP_406_NOT_ACCEPTABLE
+code['407'] = status.HTTP_407_PROXY_AUTHENTICATION_REQUIRED
+code['408'] = status.HTTP_408_REQUEST_TIMEOUT
+code['409'] = status.HTTP_409_CONFLICT
+code['410'] = status.HTTP_410_GONE
+code['411'] = status.HTTP_411_LENGTH_REQUIRED
+code['412'] = status.HTTP_412_PRECONDITION_FAILED
+code['413'] = status.HTTP_413_REQUEST_ENTITY_TOO_LARGE
+code['414'] = status.HTTP_414_REQUEST_URI_TOO_LONG
+code['415'] = status.HTTP_415_UNSUPPORTED_MEDIA_TYPE
+code['416'] = status.HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE
+code['417'] = status.HTTP_417_EXPECTATION_FAILED
+code['422'] = status.HTTP_422_UNPROCESSABLE_ENTITY
+code['423'] = status.HTTP_423_LOCKED
+code['424'] = status.HTTP_424_FAILED_DEPENDENCY
+code['426'] = status.HTTP_426_UPGRADE_REQUIRED
+code['428'] = status.HTTP_428_PRECONDITION_REQUIRED
+code['429'] = status.HTTP_429_TOO_MANY_REQUESTS
+code['431'] = status.HTTP_431_REQUEST_HEADER_FIELDS_TOO_LARGE
+code['451'] = status.HTTP_451_UNAVAILABLE_FOR_LEGAL_REASONS
+
+
+code['500'] = status.HTTP_500_INTERNAL_SERVER_ERROR
+code['501'] = status.HTTP_501_NOT_IMPLEMENTED
+code['502'] = status.HTTP_502_BAD_GATEWAY
+code['503'] = status.HTTP_503_SERVICE_UNAVAILABLE
+code['504'] = status.HTTP_504_GATEWAY_TIMEOUT
+code['505'] = status.HTTP_505_HTTP_VERSION_NOT_SUPPORTED
+code['506'] = status.HTTP_506_VARIANT_ALSO_NEGOTIATES
+code['507'] = status.HTTP_507_INSUFFICIENT_STORAGE
+code['508'] = status.HTTP_508_LOOP_DETECTED
+code['509'] = status.HTTP_509_BANDWIDTH_LIMIT_EXCEEDED
+code['510'] = status.HTTP_510_NOT_EXTENDED
+code['511'] = status.HTTP_511_NETWORK_AUTHENTICATION_REQUIRED
+
+
+def get_response_status(response_code):
+    return code[str(response_code)]

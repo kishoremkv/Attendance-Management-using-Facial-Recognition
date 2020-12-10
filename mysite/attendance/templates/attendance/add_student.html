@@ -63,7 +63,6 @@
   </div>
 
   <div class="container">
-    <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-6">
         <h2>Registration</h2>
@@ -71,7 +70,7 @@
           {% csrf_token %}
           <div class="form-group">
             <label for="">Name</label>
-            <input type="text" name = "Name" class="form-control" id="" placeholder="Enter Name" required>
+            <input type="text" name = "name" class="form-control" id="" placeholder="Enter Name" required>
           </div>
           <div class="form-group">
             <label for="">Roll Number</label>
@@ -80,6 +79,10 @@
           <div class="form-group">
             <label for="">Section</label>
             <input type="text" name = "section" class="form-control" id="" placeholder="Enter Section" required>
+          </div>
+          <div class="form-group">
+            <label for="">Branch</label>
+            <input type="text" name = "branch" class="form-control" id="" placeholder="Enter Branch" required>
           </div>
           <div class="form-group">
             <label>Please provide 20 images of yours</label>
@@ -93,7 +96,7 @@
 
     <hr>
 
-  </div> <!-- /container -->
+  </div> 
 
 </main>
 
