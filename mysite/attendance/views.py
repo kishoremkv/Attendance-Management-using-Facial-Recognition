@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, StreamingHttpResponse
 from .models import *
-import os
+import os,threading
+import cv2
 from .main.face_embeddings import *
 from .main.face_recognition_video import *
 from .main.save_faces import *
@@ -14,6 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .main.response_codes import get_response_status
 import json
 from .main.utils import *
+from django.views.decorators.gzip import gzip_page
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -69,6 +71,8 @@ def start_streaming(request):
     face_recognition_video()
     return render(request, 'attendance/start_streaming.html')
 
+
+
 @csrf_exempt
 def display(request):
     if request.method == "POST":
@@ -105,3 +109,51 @@ def display(request):
                             content_type="application/json", status=get_response_status(status_code))
             
     return render(request, 'attendance/display.html')
+
+
+
+
+
+
+# # def video_streaming(request):
+# #     return StreamingHttpResponse(face_recognition_video())
+# class VideoCamera(object):
+#     def __init__(self):
+#         self.video = cv2.VideoCapture(0)
+#         (self.grabbed, self.frame) = self.video.read()
+#         threading.Thread(target=self.update, args=()).start()
+
+#     def __del__(self):
+#         self.video.release()
+
+#     def get_frame(self):
+#         image = self.frame
+#         ret, jpeg = cv2.imencode('.jpg', image)
+#         return jpeg.tobytes()
+
+#     def update(self):
+#         while True:
+#             (self.grabbed, self.frame) = self.video.read()
+
+
+# vc= VideoCamera()
+
+
+# def gen(camera):
+#     while vc.isOpened() :
+#         ret,frame = vc.read()
+#         if not ret:
+#             break
+#         cv2.imshow('camera',frame)
+#         yield(b'--frame\r\n'
+#               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+#         if cv2.waitKey(1) & 0xFF==ord('q'):
+#             temp = False
+
+
+# @gzip_page
+# def video_streaming(request):
+#     try:
+#         return StreamingHttpResponse(gen(VideoCamera()), content_type="multipart/x-mixed-replace;boundary=frame")
+#     except:  # This is bad! replace it with proper handling
+#         pass

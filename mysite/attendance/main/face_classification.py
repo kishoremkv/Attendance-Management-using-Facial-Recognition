@@ -22,7 +22,7 @@ def face_classification():
     save_pickle('attendance/model/label_encoder.pkl',out_encoder)
     trainy = out_encoder.transform(trainy)
     testy = out_encoder.transform(testy)
-
+ 
     model = SVC(kernel="linear", probability=True)
     model.fit(trainX,trainy)
 
@@ -35,3 +35,4 @@ def face_classification():
     score_train = accuracy_score(trainy,yhat_train)
     score_test = accuracy_score(testy,yhat_test)
     print('Accuracy: train=%.3f, test=%.3f' %(score_train*100,score_test*100))
+    print("Training is done!!!")

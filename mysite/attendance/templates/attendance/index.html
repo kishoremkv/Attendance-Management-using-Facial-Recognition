@@ -60,26 +60,35 @@
   <div class="container">
     <!-- Example row of columns -->
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h2>Register Now!</h2>
-        <p>Our model is running as a background process.</p>
+        <p>This is the <b>Phase 1</b></p>
+        <p>We are very delighted to have you here.</p>
         <p>If you want to register your name as a student then please click here.</p>
         <p><a class="btn btn-primary btn-lg" href="{% url 'attendance:add_student' %}" role="button">Register &raquo;</a></p>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h2>Train Now!</h2>
-        <p>Train the model after your registration is done.</p>
-        <p>This process will take time. Be patient.</p>
-
-        <p></p>
-        <p><a class="btn btn-primary btn-lg" href="{% url 'attendance:train' %}" role="button">Train &raquo;</a></p>
+        <p>This is the <b>Phase 2</b></p>
+        <p>Here, we are going to train entire data.</p>
+        <p>This process will take time. It's time to test your patience :)</p>
+        <p><a class="btn btn-primary btn-lg" onclick="alert('This will train entire data')"  href="{% url 'attendance:train' %}" role="button">Train &raquo;</a></p>
        
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h2>Stream Now!</h2>
-        <p>Check out your cameras.</p>
-        <p>Click to start streaming.</p>
+        <p>This is the <b>Phase 3</b></p>
+        <p>We are going to start the cameras of the classrooms to retrive data.</p>
+        <p>We can see the rectangular box on every face in our live feed.</p>
         <p><a class="btn btn-primary btn-lg" href="{% url 'attendance:start_streaming' %}" role="button">Stream &raquo;</a></p>
+       
+      </div>
+      <div class="col-md-3">
+        <h2>Display Now!</h2>
+        <p>This is the <b>Phase 4</b></p>
+        <p>Each and every information is stored in our database.</p>
+        <p>To have a look into it, please click below.</p>
+        <p><a class="btn btn-primary btn-lg" href="{% url 'attendance:display' %}" role="button">Display &raquo;</a></p>
        
       </div>
       
