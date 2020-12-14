@@ -138,4 +138,4 @@ mysite/attendance/model/svm_model.pkl
 mysite/attendance/model/label_encoder.pkl
 mysite/attendance/images/train
 mysite/attendance/images/val
-mysite/db.sqlite3
+mysite/*.sqlite3
